@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rick & Morty</title>
+  </head>
+  <body>
+    <div id="app">
+      <componente-imgs
+        class="imagen"
+        v-for="personaje in personajes"
+        :nombre_img="personaje.nombre"
+        :src_img="personaje.src"
+      >
+      </componente-imgs>
+    </div>
+
+    <!-- cdn vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </body>
+</html>
+
+<script>
+  //components
+  Vue.component(`componente-imgs`, {
+    props: {
+      nombre_img: {
+        type: String,
+        required: true,
+      },
+      src_img: {
+        type: String,
+        required: true,
+      },
+    },
+    template: `
+            <div>
+                <img :src="src_img">
+                <h3>{{nombre_img}}</h3>
+            </div>
+            `,
+  });
+  const app = new Vue({
+    el: "#app",
+    data: () => {
+      return {
+        personajes: [
+          {
+            nombre: "Rick Sanchez",
+            src: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+          },
+          {
+            nombre: "Morty Smith",
+            src: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+          },
+          {
+            nombre: "Summer Smith",
+            src: "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
+          },
+          {
+            nombre: "Beth Smith",
+            src: "https://rickandmortyapi.com/api/character/avatar/4.jpeg",
+          },
+          {
+            nombre: "Jerry Smith",
+            src: "https://rickandmortyapi.com/api/character/avatar/5.jpeg",
+          },
+        ],
+      };
+    },
+  });
+</script>
+
+<style scoped>
+  body {
+    background-image: url(https://rickandmortypod.com/wp-content/uploads/2018/11/cropped-RM_page-header_background1-3.png);
+    width: 100vh;
+    background-size: cover;
+  }
+  .imagen {
+    display: flex;
+    margin: 30px;
+  }
+  img {
+    width: 150px;
+    border-radius: 100px;
+  }
+  h3 {
+    display: flex;
+    align-items: center;
+    margin: 30px;
+    font-size: 30px;
+    color: green;
+  }
+</style>
